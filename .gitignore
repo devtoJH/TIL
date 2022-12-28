@@ -209,8 +209,3 @@ $RECYCLE.BIN/
 *.msix
 *.msm
 *.msp
-
-# Windows shortcuts
-*.lnk
-
-# End of https://www.toptal.com/developers/gitignore/api/windows,python,visualstudiocode
