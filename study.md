@@ -57,3 +57,5 @@
 * 일반적인 개발 프로젝트에서 버전 관리를 별도로 하지 않는 파일/디렉토리가 발생
 * git 저장소에 .gitignore 파일을 생성하고 해당 내용을 관리
 * ***주의 : 이미 커밋된 파일은 반드시 삭제를 하여야 .gitignore로 적용됨***
+* 개발 언어 url : https://github.com/github/gitignore
+* 개발 환경 : 운영체제(windows, mac, linux), 텍스트 에디터 / IDE(visual studio code 등)
