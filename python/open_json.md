@@ -4,8 +4,8 @@ open(file, mode='r', encoding='UTF8')
 ```
 - file : 파일명
 - mode : 텍스트 모드
-- encoding : 인코딩 방식(일반적으로 utf-8 활용)  
-![image](./image/file_mode.png)
+- encoding : 인코딩 방식(일반적으로 utf-8 활용)
+![](2023-01-06-23-39-45.png)
 
 ## 파일 활용
 - with 키워드 활용  
