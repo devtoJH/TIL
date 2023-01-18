@@ -8,7 +8,7 @@
 
 |   | a | b | c | d | e | f | g | h | i |
 |---|---|---|---|---|---|---|---|---|---|
-| index | 0 | 1 | <span style="color:orange">2</span> | <span style="color:orange">3</span> | <span style="color:orange">4</span> | 5 | 6 | 7 | 8 |
+| index | 0 | 1 | **2** | **3** | **4** | 5 | 6 | 7 | 8 |
 | index | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
 ---
 (2) s[-6:-2] == 'defg'
@@ -16,19 +16,19 @@
 |   | a | b | c | d | e | f | g | h | i |
 |---|---|---|---|---|---|---|---|---|---|
 | index | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-| index | -9 | -8 | -7 | <span style="color:orange">-6</span> | <span style="color:orange">-5</span> | <span style="color:orange">-4</span> | <span style="color:reoranged">-3</span> | -2 | -1 |
+| index | -9 | -8 | -7 | **-6** | **-5** | **-4** | **-3** | -2 | -1 |
 ---
 (3) s[2:5:2] == 'ce'
 |   | a | b | c | d | e | f | g | h | i |
 |---|---|---|---|---|---|---|---|---|---|
-| index | 0 | 1 | <span style="color:orange">2</span> | <span style="color:skyblue">3</span> | <span style="color:orange">4</span> | 5 | 6 | 7 | 8 |
+| index | 0 | 1 | **2** | **3** | **4** | 5 | 6 | 7 | 8 |
 | index | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
 ---
 (4) s[-6:-1:3] == 'dg'
 |   | a | b | c | d | e | f | g | h | i |
 |---|---|---|---|---|---|---|---|---|---|
 | index | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-| index | -9 | -8 | -7 | <span style="color:orange">-6</span> | <span style="color:skyblue">-5</span> | <span style="color:skyblue">-4</span> | <span style="color:orange">-3</span> | <span style="color:skyblue">-2</span> | -1 |
+| index | -9 | -8 | -7 | **-6** | **-5** | **-4** | **-3** | **-2** | -1 |
 ---
 (5) s[2:5:-1] == ''
 |   | a | b | c | d | e | f | g | h | i |
@@ -39,25 +39,25 @@
 (6) s[:3] == 'abc'
 |   | a | b | c | d | e | f | g | h | i |
 |---|---|---|---|---|---|---|---|---|---|
-| index | <span style="color:orange">0</span> | <span style="color:orange">1</span> | <span style="color:orange">2</span> | 3 | 4 | 5 | 6 | 7 | 8 |
+| index | **0** | **1** | **2** | 3 | 4 | 5 | 6 | 7 | 8 |
 | index | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
 ---
 (7) s[5:] == 'fghi'
 |   | a | b | c | d | e | f | g | h | i |
 |---|---|---|---|---|---|---|---|---|---|
-| index | 0 | 1 | 2 | 3 | 4 | <span style="color:orange">5</span> | <span style="color:orange">6</span> | <span style="color:orange">7</span> | <span style="color:orange">8</span> |
+| index | 0 | 1 | 2 | 3 | 4 | **5** | **6** | **7** | **8** |
 | index | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
 ---
 (8) s[:] == 'abcdefghi'
 |   | a | b | c | d | e | f | g | h | i |
 |---|---|---|---|---|---|---|---|---|---|
-| index | <span style="color:orange">0</span> | <span style="color:orange">1</span> | <span style="color:orange">2</span> | <span style="color:orange">3</span> | <span style="color:orange">4</span> | <span style="color:orange">5</span> | <span style="color:orange">6</span> | <span style="color:orange">7</span> | <span style="color:orange">8</span> |
+| index | **0** | **1** | **2** | **3** | **4** | **5** | **6** | **7** | **8** |
 | index | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
 ---
 (9) s[::-1] == 'ihgfedcba'
 |   | a | b | c | d | e | f | g | h | i |
 |---|---|---|---|---|---|---|---|---|---|
-| index | <span style="color:orange">0</span> | <span style="color:orange">1</span> | <span style="color:orange">2</span> | <span style="color:orange">3</span> | <span style="color:orange">4</span> | <span style="color:orange">5</span> | <span style="color:orange">6</span> | <span style="color:orange">7</span> | <span style="color:orange">8</span> |
+| index | **0** | **1** | **2** | **3** | **4** | **5** | **6** | **7** | **8** |
 | index | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
 ---
 
