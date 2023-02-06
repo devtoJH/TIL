@@ -3,7 +3,7 @@
 - 접시를 쌓고 빼듯이 **데이터를 한 쪽에서만  넣고 빼는 자료 구조**
 - 가장 마지막에 들어온 데이터가 가장 먼저 나가므로 **LIFO(Last-in First-out, 후입선출)방식**
 
-![](./stack.jpeg)
+![](./image/stack.jpeg)
 
 - Push : 스택에 새로운 데이터를 삽입하는 행위
 - Pop : 스택의 가장 마지막 데이터를 가져오는 행위
@@ -22,7 +22,7 @@
 - **한 쪽 끝에서 데이터를 넣고, 다른 한 쪽에서만 데이터를 뺄 수 있는 자료 구조**
 - 가장 먼저 들어온 데이터가 가장 먼저 나가므로 **FIFO(First-in First-out, 선입선출)방식**
 
-![](./queue.png)
+![](./image/queue.png)
 
 - Enqueue : 큐의 맨 뒤에서 데이터를 삽입하는 행위
 - Dequeue : 큐의 맨 앞에서 데이터를 가져오는 행위
@@ -46,12 +46,12 @@
 - 덱은 양 방향 삽입, 추출이 모두 큐보다 훨씬 빠름(시간을 크게 단축시킬 수 있음)
 - 큐를 리스트로 이용했을 때의 단점을 보완시켜 줌
 
-![](./deque.jfif)
+![](./image/deque.jfif)
 
 ## 리스트와 덱의 시간복잡도
 
 ### 1. 리스트 시간 복잡도
-![](./list_time_complexity.png)
+![](./image/list_time_complexity.png)
 
 ### 2. 덱 시간 복잡도
-![](./deque_time_complexity.png)
+![](./image/deque_time_complexity.png)

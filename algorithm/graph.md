@@ -8,25 +8,25 @@
 - 인접(Adjacency) : 두 개의 정점이 하나의 간선으로 직접 연결된 상태를 의미
 
 ### 1. 정점(Vertex)
-<img src="graph_vertex.png" width="400" height="300">
+<img src="image/graph_vertex.png" width="400" height="300">
 
 ### 2. 간선(Edge)
-<img src="graph_edge.png" width="400" height="300">
+<img src="image/graph_edge.png" width="400" height="300">
 
 ### 3. 경로(Path)
 - 5번 정점부터 4번 정점까지의 경로
     - 5 -> 3 -> 4
 
-<img src="graph_path.png" width="400" height="300">
+<img src="image/graph_path.png" width="400" height="300">
 
 ### 4. 인접(Adjacency)
 - 3, 5는 인접하다.
 
-<img src="graph_adjacency.png" width="400" height="300">
+<img src="image/graph_adjacency.png" width="400" height="300">
 
 - 5, 4는 인접하지 않다.
 
-<img src="graph_adjacency(2).png" width="400" height="300">
+<img src="image/graph_adjacency(2).png" width="400" height="300">
 
 ## 그래프의 종류
 1. 무방향 그래프(Undirected graph)
@@ -35,7 +35,7 @@
 - 차수(Degree) : 하나의 정점에 연결된 간선의 개수
     - 모든 정점의 차수의 합 : 간선 수 X 2
 
-<img src="undirected.jpg" width="400" height="300">
+<img src="image/undirected.jpg" width="400" height="300">
 
 2. 유방향 그래프(Directed graph)
 - 간선의 방향이 있는 그래프
@@ -44,7 +44,7 @@
     - 진입 차수(In-degree) : 외부 정점에서 한 정점으로 들어오는 간선의 수
     - 진출 차수(Out-degree) : 한 정점에서 외부 정점으로 나가는 간선의 수
 
-<img src="directed.jpg" width="400" height="300">
+<img src="image/directed.jpg" width="400" height="300">
 
 ## 그래프의 표현
 1. 인접 행렬(Adjacency matrix)
@@ -103,7 +103,7 @@ graph = [
 - 리스트를 통해 각 정점에 대한 인접 정점들을 순차적을 표현하는 방식
 - 간선의 개수와 관계를 지님.
 
-<img src="graph.png" width="400" height="300">
+<img src="image/graph.png" width="400" height="300">
 
 ```python
 # 위 그래프를 리스트로 표현
