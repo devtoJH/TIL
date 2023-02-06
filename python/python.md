@@ -88,13 +88,19 @@ None : 파이썬 자료형 중 하나.
 - 조건이 참인 경우 들여쓰기 되어 있는 코드블록이 실행됨
 - 무한 루프를 하지 않도록 종료 조건이 반드시 필요
 - 문자열 순회 : 사용자가 입력한 문자를 한 글자 씩 세로로 출력
->> chars = input() #hello
->> for char in chars:
-	print(char) #h
-		   e
-		   l
-		   l
-		   o
+```python
+chars = input() #hello
+for char in chars:
+	print(char)
+
+'''
+h
+e
+l
+l
+o
+'''
+```
 
 - 반복문 제어
 1) break : 반복문을 종료
