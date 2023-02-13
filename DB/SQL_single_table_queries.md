@@ -399,7 +399,7 @@ SELECT
 FROM
     table_name
 GROUP BY
-    c1, c2, ..., cn
+    c1, c2, ..., cn;
 ```
 - FROM 및 WHERE 절 뒤에 배치
 - GROUP BY 절 뒤에 그룹화할 필드 목록을 작성
@@ -412,7 +412,7 @@ SELECT
 FROM
     employees
 GROUP BY
-    jobTitle
+    jobTitle;
 ```
 
 | jobTitle |
@@ -432,7 +432,7 @@ SELECT
 FROM
     employees
 GROUP BY
-    jobTitle
+    jobTitle;
 ```
 
 | jobTitle | COUNT(*) |
