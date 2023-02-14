@@ -6,7 +6,7 @@
     테이블에서 데이터를 조회
 
 ### SELECT syntax
-```
+```sql
 SELECT
     select_list
 FROM
@@ -17,7 +17,7 @@ FROM
 
 ### SELECT 예시
 1. 테이블 employees에서 lastName 필드의 모든 데이터 조회
-```
+```sql
 SELECT
     lastName
 FROM
@@ -25,7 +25,7 @@ FROM
 ```
 
 2. 테이블 employees에서 lastName, firstName 필드의 모든 데이터를 조회
-```
+```sql
 SELECT
     lastName, firstName
 FROM
@@ -33,7 +33,7 @@ FROM
 ```
 
 3. 테이블 employees에서 모든 데이터를 조회
-```
+```sql
 SELECT
     *
 FROM
@@ -43,7 +43,7 @@ FROM
 4. 테이블 employees에서 firstName 필드의 모든 데이터를 조회
     - 단, 조회 시 firstName이 아닌 '이름'으로 출력될 수 있도록 출력명 변경
     - AS(alias) keyword : 필드에 새로운 별칭을 지정
-```
+```sql
 SELECT
     firstName AS '이름'
 FROM
@@ -53,7 +53,7 @@ FROM
 5. 테이블 orderdetails에서 productCode, 주문 총액 필드의 모든 데이터를 조회
     - 단, 주문 총액 필드는 quantityOrdered와 priceEach 필드를 곱한 값
     - Arithmetic Operators 기본적인 사칙연산 사용 가능
-```
+```sql
 SELECT
     productCode,
     quantityOrdered * priceEach AS '주문 총액'
@@ -71,7 +71,7 @@ FROM
     조회 결과의 레코드를 정렬
 
 ### ORDER BY syntax
-```
+```sql
 SELECT
     select_list
 FROM
@@ -88,7 +88,7 @@ ORDER BY
 
 ### ORDER BY 예시
 1. 테이블 employees에서 firstName 필드의 모든 데이터를 오름차순으로 조회
-```
+```sql
 SELECT
     firstName
 FROM
@@ -98,7 +98,7 @@ ORDER BY
 ```
 
 2. 테이블 employees에서 firstName 필드의 모든 데이터를 내림차순으로 조회
-```
+```sql
 SELECT
     firstName
 FROM
@@ -109,7 +109,7 @@ ORDER BY
 
 3. 테이블 employees에서 lastName 필드를 기준으로 내림차순으로 정렬한 다음,
 firstName 필드 기준으로 오름차순 정렬하여 조회
-```
+```sql
 SELECT
     lastName, firstName
 FROM
@@ -122,7 +122,7 @@ ORDER BY
 4. 테이블 orderdetails에서 totalSales 필드를 기준으로 내림차순으로 정렬한 다음,
 productCode, totalSales 필드의 모든 데이터를 조회
     - 단, totalSales 필드는 quantityOrdered와 priceEach 필드를 곱한 결과 값
-```
+```sql
 SELECT
     productCode,
     quantityOrdered * priceEach AS 'totalSales'
@@ -157,7 +157,7 @@ ORDER BY
     조회 결과에서 중복된 레코드를 제거
 
 ### DISTINCT syntax
-```
+```sql
 SELECT DISTINCT
     select_list
 FROM
@@ -168,7 +168,7 @@ FROM
 
 ### DISTINCT 예시
 1. 테이블 employees에서 lastName 필드의 모든 데이터를 오름차순으로 조회
-```
+```sql
 SELECT
     lastName
 FROM
@@ -178,7 +178,7 @@ ORDER BY
 ```
 
 2. 테이블 employees에서 lastName 필드의 모든 데이터를 중복없이 오름차순으로 조회
-```
+```sql
 SELECT DISTINCT
     lastName
 FROM
@@ -191,7 +191,7 @@ ORDER BY
     조회 시 특정 검색 조건을 지정
 
 ### WHERE syntax
-```
+```sql
 SELECT
     select_list
 FROM
@@ -204,7 +204,7 @@ WHERE
 
 ### WHERE 예시
 1. 테이블 employees에서 officeCode 필드 값이 1인 데이터의 lastName, firstName, officeCode 조회
-```
+```sql
 SELECT
     lastName, firstName, officeCode
 FROM
@@ -214,7 +214,7 @@ WHERE
 ```
 
 2. 테이블 employees에서 jobTitle 필드 값이 'Sales Rep'이 아닌 데이터의 lastName, firstName, jobTitle 조회
-```
+```sql
 SELECT
     lastName, firstName, jobTitle
 FROM
@@ -224,7 +224,7 @@ WHERE
 ```
 
 3. 테이블 employees에서 officeCode 필드 값이 3 이상이고 jobTitle 필드 값이 'Sales Rep'인 데이터의 lastName, firstName, officeCode, jobTitle 조회
-```
+```sql
 SELECT
     lastName, firstName, officeCode, jobTitle
 FROM
@@ -235,7 +235,7 @@ WHERE
 ```
 
 4. 테이블 employees에서 officeCode 필드 값이 5 미만이거나 jobTitle 필드 값이 'Sales Rep'이 아닌 데이터의 lastName, firstName, officeCode, jobTitle 조회
-```
+```sql
 SELECT
     lastName, firstName, officeCode, jobTitle
 FROM
@@ -246,7 +246,7 @@ WHERE
 ```
 
 5. 테이블 employees에서 officeCode 필드 값이 1에서 4 사이 값인 데이터의 lastName, firstName, officeCode 조회(1과 4를 포함)
-```
+```sql
 SELECT
     lastName, firstName, officeCode
 FROM
@@ -260,7 +260,7 @@ WHERE
 ```
 
 6. 테이블 employees에서 officeCode 필드 값이 1에서 4 사이 값인 데이터의 lastName, firstName, officeCode를 오름차순 조회(1과 4를 포함)
-```
+```sql
 SELECT
     lastName, firstName, officeCode
 FROM
@@ -272,7 +272,7 @@ ORDER BY
 ```
 
 7. 테이블 employees에서 officeCode 필드 값이 1 또는 3 또는 4 값인 데이터의 lastName, firstName, officeCode를 조회
-```
+```sql
 SELECT
     lastName, firstName, officeCode
 FROM
@@ -287,7 +287,7 @@ WHERE
 ```
 
 8. 테이블 employees에서 officeCode 필드 값이 1과 3 그리고 4가 아닌 데이터의 lastName, firstName, officeCode를 조회
-```
+```sql
 SELECT
     lastName, firstName, officeCode
 FROM
@@ -297,7 +297,7 @@ WHERE
 ```
 
 9. 테이블 employees에서 lastName 필드 값이 son으로 끝나는 데이터의 lastName, firstName 조회
-```
+```sql
 SELECT
     lastName, firstName
 FROM
@@ -307,7 +307,7 @@ WHERE
 ```
 
 10. 테이블 employees에서 firstName 필드 값이 4자리면서 y로 끝나는 데이터의 lastName, firstName 조회
-```
+```sql
 SELECT
     lastName, firstName
 FROM
@@ -331,7 +331,7 @@ WHERE
 
 ## LIMIT clause
     조회하는 레코드 수를 제한
-```
+```sql
 SELECT
     select_list
 FROM
@@ -342,7 +342,7 @@ LIMIT [offset,] row_count;
 - row_count는 조회할 최대 레코드 수를 지정
 
 ### LIMIT & OFFSET 예시
-```
+```sql
 SELECT
     ...
 FROM
@@ -360,7 +360,7 @@ LIMIT 3, 5;
 ```
 
 1. 테이블 customers에서 contactFirstName, creditLimit 필드 데이터를 creditLimit 기준 내림차순으로 7개만 조회
-```
+```sql
 SELECT
     contactFirstName, creditLimit
 FROM
@@ -371,7 +371,7 @@ LIMIT 7;
 ```
 
 2. 테이블 customers에서 contactFirstName, creditLimit 필드 데이터를 creditLimit 기준 내림차순으로 4번째부터 7번째 데이터만 조회
-```
+```sql
 SELECT
     contactFirstName, creditLimit
 FROM
@@ -393,7 +393,7 @@ LIMIT 3 OFFSET 4;  -- 위의 LIMIT절과 동일한 코드
     - SUM, AVG, MAX, MIN, COUNT
 
 ### GROUP BY syntax
-```
+```sql
 SELECT
     c1, c2, ..., cn, aggregate_function(ci)
 FROM
@@ -406,7 +406,7 @@ GROUP BY
 
 ### GROUP BY 이해하기
 1. jobTitle 필드를 그룹화
-```
+```sql
 SELECT
     jobTitle
 FROM
@@ -426,7 +426,7 @@ GROUP BY
 | Sales Rep |
 
 2. COUNT 함수가 각 그룹에 대한 집계된 값을 계산
-```
+```sql
 SELECT
     jobTitle, COUNT(*)
 FROM
@@ -447,7 +447,7 @@ GROUP BY
 
 ### GROUP BY 예시
 1. 테이블 costomers에서 country 필드를 그룹화하여 각 그룹에 대한 creditLimit의 평균값을 내림차순 조회
-```
+```sql
 SELECT
     country, AVG(creditLimit)
 FROM
@@ -459,7 +459,7 @@ ORDER BY
 ```
 
 2. 테이블 costomers에서 country 필드를 그룹화하여 각 그룹에 대한 creditLimit의 평균값이 80000을 초과하는 데이터만 조회
-```
+```sql
 SELECT
     country, AVG(creditLimit)
 FROM
@@ -474,7 +474,7 @@ GROUP BY
 
 - HAVING clause : 집계 항목에 대한 세부 조건을 지정
     - GROUP BY와 함께 사용되며, GROUP BY가 없다면 WHERE 사용
-```
+```sql
 SELECT
     country, AVG(creditLimit)
 FROM
@@ -499,7 +499,7 @@ HAVING
 ### 정렬에서의 NULL
 - MY SQL에서 NULL은 NULL이 아닌 값 앞에 위치
     - NULL 값이 존재할 경우 오름차순 정렬 시 결과에 NULL이 먼저 출력
-```
+```sql
 -- NULL 정렬 예시
 SELECT
     postalCode
