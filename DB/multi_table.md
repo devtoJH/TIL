@@ -67,7 +67,7 @@ FROM
 LEFT JOIN users
     ON articles.userId = users.id;
 ```
-![](./image/LEFTJOIN.png)
+![](./image/leftjoin.png)
 
 ### LEFT JOIN 특징
 - 왼쪽은 무조건 표시하고, 매치되는 레코드가 없으면 NULL을 표시
