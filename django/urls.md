@@ -3,6 +3,8 @@
 ## 1. URL dispatcher
     URL 패턴을 정의하고, 해당 패턴이 일치하는 요청을 처리할 view 함수을 연결(매핑)
 
+<br>
+
 ## 2. 변수와 URL
 - 템플릿의 많은 부분이 중복되고, url의 일부만 변경되는 상황이라면?
 
@@ -33,8 +35,9 @@ path('hello/<str:name>/', views.greeting)
 - URL 변수의 타입을 지정
 - str, int 등 5가지 타입 지원
 
-## 3. App의 URL
 <br>
+
+## 3. App의 URL
 
 ## App URL mapping
 - 각 앱에 URL을 정의하는 것
@@ -61,6 +64,8 @@ urlpatterns = [
     path('pages/', include('pages.urls')),
 ]
 ```
+
+<br>
 
 ## 4. URL 이름 지정
 
@@ -135,6 +140,8 @@ urlpatterns = [
 {% url 'url-name' arg1 arg2 %}
 # arg1과 arg2 구분할 때 콤마(,) 사용 X
 ```
+
+<br>
 
 ## 5. URL Namespace
 
