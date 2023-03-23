@@ -46,7 +46,7 @@ path('hello/<str:name>/', views.greeting)
 
 ### 변경
 
-<img src="images/url2.png" width="600" height="300"/>)
+<img src="images/url2.png" width="600" height="300"/>
 
 ## include()
 - 다른 URL들을 참조할 수 있도록 돕는 함수
@@ -185,6 +185,7 @@ urlpatterns = [
 ## app_name 지정 후 주의사항
 - app_name을 지정한 이후에는 url 태그에서 반드시 app_name:url_name 형태로만 사용 가능
 - 그렇지 않으면, NoReverseMatch 에러 발생
+- NoReverseMatch 발생 시, **urls.py에서 오류 발생한 것(url.py 집중해서 볼 것!)**
 - app_name 지정 후 다음과 같은 표기는 사용 불가
 
     ```python
