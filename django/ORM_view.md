@@ -50,7 +50,7 @@ def index(request):
 <h1>Articles</h1>
 ```
 
-## READ(조회)
+## READ
 
 ### 1. 전체 게시글 조회
 ```python
