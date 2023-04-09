@@ -1,0 +1,36 @@
+{% extends 'accountbooks/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card mt-3 d-flex justify-content-center" style="width: 18rem;">
+        <div class="card-header">
+            <h1>{{accountbook.pk}} </h1>
+        </div>
+    <ul class="list-group list-group-flush">    
+        <li class="list-group-item">
+            <p>내용 - {{accountbook.note}}</p>
+        </li>
+        <li class="list-group-item">
+            <p>메모 - {{accountbook.description}} </p>
+        </li>
+        <li class="list-group-item">
+            <p>분류 - {{accountbook.category}}</p>
+        </li>
+        <li class="list-group-item">    
+            <p>사용금액: {{accountbook.amount}}</p>
+        </li>
+        <li class="list-group-item">    
+            <p>사용날짜: {{accountbook.date}}</p>
+        </li>
+    </ul>
+    
+    <a href="{% url 'accountbooks:edit' accountbook.pk%}" class="btn btn-outline-primary justify-align-center" style="width: 18rem;" role="button">수정하기</a>
+    <a href="{% url 'accountbooks:index'%}" class="btn btn-outline-primary justify-align-center" style="width: 18rem;" role="button">메인 페이지</a>
+    <form action="{% url 'accountbooks:delete' accountbook.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제하기" class="btn btn-outline-primary" role="button" style="width: 18rem;">
+    </form>
+    </div>
+</div>
+
+{% endblock content %}
