@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="d-flex justify-content-center mt-5">
+    <div>
+      <h3>CREATE</h3>
+      <form action="{% url 'reviews:create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-outline-secondary" type="submit" value="✍🏻글 작성"></input>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

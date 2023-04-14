@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="d-flex justify-content-center mt-5">
+    <div>
+      <h1>회원정보 수정</h1>
+      <form action="{% url 'accounts:update' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-outline-success my-2" type="submit">수정</button>
+      </form>
+      <a href="{% url 'accounts:change_password' %}" class="btn btn-outline-primary my-2">비밀번호 변경</a>
+      <form action="{% url 'accounts:delete' %}" method="POST" id="delete">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}" />
+      </form>
+      <button class="btn btn-outline-danger my-2" onclick="confirmDelete(event)">
+        회원탈퇴
+      </button>
+    </div>
+  </div>
+  <script>
+    function confirmDelete(event) {
+      event.preventDefault()
+  
+      if (confirm("정말로 탈퇴하시겠습니까?")) {
+        document.querySelector("#delete").submit()
+      }
+    }
+  </script>
+{% endblock content %}

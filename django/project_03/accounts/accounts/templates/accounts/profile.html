@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <div class="d-flex justify-content-center mt-5">
+    <div style="width: 600px;">
+      <h2>{{ user.username }} 님의 프로필 페이지</h2>
+      <hr>
+      <h3>회원 정보</h3>
+      <p>username : {{ user.username }}</p>
+      <p>email : {{ user.email }}</p>
+      <h3>내가 작성한 후기</h3>
+      {% for review in reviews %}
+        <hr>
+        {% if review.image %}
+          <img src="{{ review.image.url }}" class="card-img-top" style="width: 262px; height: 370px;" alt="...">
+        {% else %}
+          <img src="{% static 'movie/noimg.png' %}" class="card-img-top" style="width: 262px; height: 370px;" alt="noimg">
+        {% endif %}
+        <p><span class="fw-bold">작성자</span> - {{review.user}}</p>
+        <p><span class="fw-bold">후기 번호</span> - {{review.pk}}</p>
+        <p><span class="fw-bold">후기 제목</span> - {{review.title}}</p>
+        <p class="text-truncate"><span class="fw-bold">후기 내용</span> - {{review.content}}</p>
+        <p><span class="fw-bold">영화 이름</span> - {{review.movie}}</p>
+        <a class="btn btn-outline-primary btn-sm" href="{% url 'reviews:detail' review.pk %}">후기 보러 가기</a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}
