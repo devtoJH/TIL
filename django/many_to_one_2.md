@@ -7,7 +7,6 @@
 - 0개 이상의 댓글은 1명의 유저에 의해 작성될 수 있음
 
 ## Article & User (모델 관계 설정)
-
 ### User 외래 키 정의
 
 ```python
@@ -63,7 +62,6 @@ $ python manage.py migrate
 - article 테이블에 user_id 필드 생성됐는 지 확인
 
 ## Article & User (CRUD 구현)
-
 ### Article CREATE (1/5)
 - ArticleForm 출력 확인
 
@@ -199,7 +197,6 @@ def delete(request, artilce_pk):
 ```
 
 ## Comment & User (모델 관계 설정)
-
 ### User 외래 키 정의
 
 ```python
