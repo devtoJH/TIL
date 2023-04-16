@@ -4,7 +4,7 @@
 - 테이블의 필드 중 다른 테이블의 레코드를 식별할 수 있는 키
 - 각 레코드에서 서로 다른 테이블 간의 '관계'를 만드는 데 사용
 
-## 모델 관계 설정
+## Comment & Article (모델 관계 설정)
 ## Many to one relationships (N:1 or 1:N)
 - 한 테이블의 0개 이상의 레코드가 다른 테이블의 레코드 한 개와 관련된 관계
 
@@ -41,7 +41,7 @@ class Comment(models.Model):
         - 부모 객체(참조된 객체)가 삭제 됐을 때 이를 참조하는 객체도 삭제
         - https://docs.djangoproject.com/en/3.2/ref/models/fields/#arguments
 
-## 관계 모델 참조
+## Comment & Article (관계 모델 참조)
 
 ### 역참조
 - 나를 참조하는 테이블(나를 외래 키로 지정한)을 참조하는 것
@@ -93,7 +93,7 @@ for comment in comments:
     print(comment.content)
 ```
 
-## 댓글 기능 구현
+## Comment & Article (댓글 기능 구현)
 ### Comment CREATE (1/6)
 
 ```python 
