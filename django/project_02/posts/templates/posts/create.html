@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block style %}{% endblock style %}
+
+{% block content %}
+<form action="{% url 'posts:create' %} " method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value='생성' class="btn btn-primary">
+</form>
+{% endblock content %}
