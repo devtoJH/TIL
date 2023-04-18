@@ -1,0 +1,22 @@
+{% extends 'accountbooks/base.html' %}
+
+{% block content %}
+<header>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-around">
+    <h1 class="navbar-brand">가계부 목록</h1>
+    <a href="{% url 'accountbooks:new' %}" class="btn btn-outline-primary" role="button">가계부 생성</a>
+    </div>
+</nav>
+</header>
+<main>
+<div class="container-fluid d-flex flex-column ms-5">
+{% for accountbook in accountbooks %}
+    <ul>
+        <li><a href="{% url 'accountbooks:detail' accountbook.pk %}">{{ accountbook.pk }} - {{ accountbook.note }}</a> </li>
+    </ul>
+{% endfor %}
+</div>
+</main>
+
+{% endblock content %}

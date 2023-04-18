@@ -1,0 +1,10 @@
+{% extends 'accountbooks/base.html' %}
+
+{% block content %}
+<h1>작성이 완료되었습니다.</h1>
+
+<div class="container-fluid mt-5 d-flex justify-content-center">
+    <a href="{% url 'accountbooks:index' %}" class="btn btn-outline-primary" role="button">돌아가기</a>
+</div>
+{% endblock content %}
+

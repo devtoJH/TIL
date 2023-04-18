@@ -1,0 +1,50 @@
+{% extends 'accountbooks/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+<form action="{% url 'accountbooks:create' %}" method="POST">
+    {% csrf_token %}
+        <h1>New &#x26A1;</h1>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;"> 내용 </span>
+            <input type="text" name='note' id='note' class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;"> 분류 </span>
+            <input type="text" name='category' id='category' class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;"> 사용금액 </span>
+            <input type="amount" name='amount' id='amount' class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;"> 사용날짜 </span>
+            <input type="date" name='date' id='date' class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" onchange="validDate" required>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;">메모 </span>
+            <textarea name='description' id='description' class="form-control" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="container-fluid d-flex justify-content-around mt-3">
+            
+            <button type="submit" class="btn btn-outline-primary" id="submit-button">생성</button>
+            <a href="{% url 'accountbooks:index'%}" class="btn btn-outline-primary justify-align-center" role="button">뒤로가기</a>
+        </div>
+
+</form>
+<script>
+    function validDate() {
+        const dateInput = document.getElementsByname('date')[0];
+        const submitButton = document.getElementsById('submit-button');
+        if (!Date.parse(dateInput.value)) {
+            submitButton.disabled = true;
+        }   else {
+            submitbutton.disabled = false;
+        }
+    }
+
+</script>
+
+{% endblock content %}
+

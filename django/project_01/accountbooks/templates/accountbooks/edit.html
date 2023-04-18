@@ -1,0 +1,57 @@
+{% extends 'accountbooks/base.html' %}
+
+{% block content %}
+<div class="container pt-5">
+<header>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-around">    
+    <h1 class="">Edit &#x26A1;</h1>
+    <a href="{% url 'accountbooks:index' %}" class="btn btn-outline-primary justify-align-center" role="button">메인 페이지</a>
+    </div>
+</nav>
+</header>
+<hr>
+<main>
+<form action="{% url 'accountbooks:update' accountbook.pk %}" method="POST">
+    {% csrf_token %}
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;"> 내용 </span>
+        <input type="text" name='note' id='note' class="form-control" value="{{accountbook.note}}">
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;"> 분류 </span>
+        <input type="text" name='category' id='category' class="form-control" value="{{accountbook.category}}">
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;"> 사용금액 </span>
+        <input type="text" name='amount' id='amount' class="form-control" value="{{accountbook.amount}}">
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;"> 사용날짜 </span>
+        <input type="date" name='date' id='date' class="form-control" value="{{accountbook.date}}" onchange="validDate" required>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm" style="background-color: lightgoldenrodyellow;"> 메모 </span>
+        <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{accountbook.description}}</textarea>
+    </div>
+    <div class="container-fluid d-flex justify-content-between">
+        <button type="submit" class="btn btn-outline-primary" id="submit-button">수정</button> 
+        <a href="{% url 'accountbooks:detail' accountbook.pk %}" class="btn btn-outline-primary justify-align-center" role="button" style="width: 13rem;">뒤로가기</a>
+    </div>
+</form>
+</main>
+</div>
+
+<script>
+    function validDate() {
+        const dateInput = document.getElementsByname('date')[0];
+        const submitButton = document.getElementsById('submit-button');
+        if (!Date.parse(dateInput.value)) {
+            submitButton.disabled = true;
+        }   else {
+            submitbutton.disabled = false;
+        }
+    }
+
+</script>
+{% endblock content %}
