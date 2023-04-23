@@ -1,0 +1,68 @@
+a {
+  text-decoration: none;
+  color: #676a6c;
+  cursor: pointer;
+}
+
+.card {
+  border-radius: 3px;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 20px #ddd;
+}
+
+.image1 {
+  float: left;
+  width: 50%;
+  height: 180px;
+  background-size: cover;
+  background-position: center top;
+  display: flex;
+}
+
+.image2 {
+  width: 50%;
+  height: 180px;
+  background-size: cover;
+  background-position: center top;
+  display: flex;
+}
+
+.no-image1 {
+  float: left;
+  width: 50%;
+  height: 180px;
+  background-size: cover;
+  background-position: center top;
+  display: flex;
+}
+
+.no-image2 {
+  width: 50%;
+  height: 180px;
+  background-size: cover;
+  background-position: center top;
+  display: flex;
+}
+
+.content {
+  background-color: #f5f5f5;
+  width: 50%;
+  max-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 4px;
+}
+
+.title:hover {
+  color : #1ab394;
+}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link %}
+  <link rel="stylesheet" href="{% static 'index_style.css' %}">
+{% endblock link %}
+
+{% block content %}
+<div class="row row-cols-2 row-cols-md-4 row-cols-xl-6 g-2">
+  {% for post in posts %}
+  <a href="{% url 'posts:detail' post.pk %}">
+    <div class="col">
+      <div class="card">
+        <div class="card-img-top">
+          {% if post.image1 %}
+            <div class="image1" style="background-image: url({{ post.image1.url }});"></div>
+          {% else %}
+            <div class="no-image1" style="background-image: url({% static 'no_image.png' %});"></div>
+          {% endif %}
+
+          {% if post.image2 %}
+            <div class="image2" style="background-image: url({{ post.image2.url }});"></div>
+          {% else %}
+            <div class="no-image2" style="background-image: url({% static 'no_image.png' %});"></div>
+          {% endif %}
+          <div class="d-flex">
+            <div class="content">{{ post.select1_content }}</div>
+            <div class="content">{{ post.select2_content }}</div>
+          </div>
+        </div>
+        <div class="title px-3">{{ post.title }}</div>
+        <div class="mt-1 d-flex justify-content-evenly">
+          <p class="mb-1"><i class="bi bi-hand-thumbs-up"></i> {{ post.like_users.count }}</p>
+          <p class="mb-1"><i class="bi bi-person-fill-check"></i> {{ post.select1_users.count|add:post.select2_users.count }}</p>
+        </div>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% endblock content %}

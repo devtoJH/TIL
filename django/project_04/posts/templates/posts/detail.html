@@ -1,0 +1,332 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+  .balancegame-container {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    display: flex;
+  }
+
+  .balancegame-title {
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    z-index:100;
+  }
+
+  .balancegame-form {
+    width: 100%;
+    height: 100%;
+  }
+
+  .balancegame-select {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 1);
+    aspect-ratio: 1 / 1;
+  }
+
+  
+  .balancegame-select:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    
+  }
+
+  .balancegame-imgcontainer {
+    width: 400px;
+    height: 400px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+
+  }
+
+  .balancegame-img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .balancegame-content {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: #1ab394 1px 0 10px;
+
+  }
+
+  .balancegame-count {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: #1ab394 1px 0 10px;
+  }
+
+  .balancegame-vsimgcontainer {
+    position: absolute;
+    transform: translate(-50%, 0);
+    top: 40%;
+    left: 50%;
+    height: 5rem;
+    width: 5rem;
+    z-index: 50;
+  }
+
+  .container-comment {
+    width: 800px;
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: solid green;
+  }
+
+  .container-comment-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 13px;
+    color: #98a4b7;
+    font-weight: 400;
+  }
+
+  .container-user {
+    display: flex;
+    align-items: center;
+    color: green;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .container-comment-content {
+    font-size: 14px;
+    font-weight: 400;
+    color: #98a4b7;
+  }
+{% endblock style %}
+
+
+{% block content %}
+  <div class="balancegame-container mb-3">
+    <div class="balancegame-title">
+      {{ post.title }}
+    </div>
+    
+    <form class="balancegame-form" id="formSelect1" action="{% url 'posts:answer' post.pk 1 %}" method="POST">
+      {% csrf_token %}
+      {% comment %} <input type="submit" style="display: none;"> {% endcomment %}
+      <div class="balancegame-select" onclick="submitForm1()">
+        <div class="balancegame-imgcontainer">
+          {% if post.image1 %}
+            <img class="balancegame-img" src="{{ post.image1.url }}" alt="{{ post.select1_content }} 이미지">
+          {% else %}
+            <img class="balancegame-img" src="{% static 'no_image.png' %}" alt="이미지 없음">
+          {% endif %}
+        </div>
+        <div class="balancegame-content">
+          {{ post.select1_content }}
+        </div>
+        <div class="balancegame-count">
+          {{ post.select1_users.all|length }}
+        </div>
+      </div>
+    </form>
+    
+    <form class="balancegame-form" id="formSelect2" action="{% url 'posts:answer' post.pk 2 %}" method="POST">
+      {% csrf_token %}
+      <div class="balancegame-select" onclick="submitForm2()">
+        <div class="balancegame-imgcontainer">
+          {% if post.image2 %}
+            <img class="balancegame-img" src="{{ post.image2.url }}" alt="{{ post.select2_content }} 이미지">
+          {% else %}
+            <img class="balancegame-img" src="{% static 'no_image.png' %}" alt="이미지 없음">
+          {% endif %}
+        </div>
+        <div class="balancegame-content">
+          {{ post.select2_content }}
+        </div>
+        <div class="balancegame-count">
+          {{ post.select2_users.all|length }}
+        </div>
+      </div>
+    </form>
+    <div class="balancegame-vsimgcontainer">
+      <img class="balancegame-img" src="{% static 'vs_image.png' %}" alt="versus 이미지">
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center mb-3">
+    {% if request.user.is_authenticated %}
+      <form action="{% url 'posts:likes' post.pk %}" method="POST">
+        {% csrf_token %}
+        {% if request.user in post.like_users.all %}
+          <button class="btn text-success">
+            <i type="submit" class="bi bi-hand-thumbs-up-fill"></i>
+            {{ post.like_users.count }}
+          </button>
+        {% else %}
+          <button class="btn text-success">
+            <i type="submit" class="bi bi-hand-thumbs-up"></i>
+            {{ post.like_users.count }}
+          </button>
+        {% endif %}
+      </form>
+    {% else %}
+      <button class="btn text-success">
+        <i type="submit" class="bi bi-hand-thumbs-up"></i>
+        {{ post.like_users.count }}
+      </button>
+    {% endif %}
+  </div>
+  <hr>
+
+
+  <div class="d-flex align-items-center mb-3">
+    <a class="btn btn-success me-3" href="{% url 'posts:index' %}">back</a>
+
+    {% if request.user == post.user %}
+        <form action="{% url 'posts:delete' post.pk %}" method="post">
+          {% csrf_token %}
+          <input class="btn btn-success me-3" type="submit" value="글 삭제">
+        </form>
+    {% endif %}
+  
+    {% if request.user == post.user %}
+    <a class="btn btn-success me-3" href="{% url 'posts:update' post.pk %}">글수정</a>
+  {% endif %}
+  </div>
+
+{% comment %} <form class="mb-3" action="{% url 'posts:comment_create' post.pk %}" method="POST">
+  {% csrf_token %}
+  {% if request.user.is_anonymous %}
+    <textarea name="" id="" cols="30" rows="10" disabled></textarea>
+    <input type="submit" value="댓글 작성" disabled>
+  {% else %}
+    {{ comment_form.as_p }}
+    <input class="btn btn-success me-3" type="submit" value="댓글 작성">
+  {% endif %}
+</form> {% endcomment %}
+
+  {% for comment in comments %}
+    <div class="container-comment rounded">
+      <div class="container-comment-top">
+        <div class="container-user">
+          <span>
+            {{ comment.user }}
+          </span>
+        </div>
+      </div>
+      <div class="container-comment-content mb-2">
+        {{ comment.content }}
+      </div>
+      <div class="d-flex">
+        {% if request.user.is_authenticated %}
+          <form class="me-3" action="{% url 'posts:comment_likes' post.pk comment.pk %}" method="POST">
+            {% csrf_token %}
+              {% if request.user in comment.like_users.all %}
+                <button class="btn text-success">
+                  <i type="submit" class="bi bi-hand-thumbs-up-fill"></i>
+                  {{ comment.like_users.count }}
+                </button>
+              {% else %}
+                <button class="btn text-success">
+                  <i type="submit" class="bi bi-hand-thumbs-up"></i>
+                  {{ comment.like_users.count }}
+                </button>
+              {% endif %}
+          </form>
+        {% else %}
+          <button class="btn text-success">
+            <i type="submit" class="bi bi-hand-thumbs-up"></i>
+            {{ comment.like_users.count }}
+          </button>
+        {% endif %}
+        {% if request.user == comment.user %}
+          <form action="{% url 'posts:comment_delete' post.pk comment.pk %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-success" type="submit" value="댓글삭제">
+          </form>
+        {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+    <div style="width:800px;">
+      {% if request.user.is_authenticated %}
+        <label for="commentinput" class="form-label">댓글작성</label>
+        <form class="d-flex" action="{% url 'posts:comment_create' post.pk %}" method="POST">
+          {% csrf_token %}
+          {% for form in comment_form %}
+            {{ form }}
+          {% endfor %}
+          <input class="btn btn-outline-success ms-2" type="submit">
+        </form>
+      {% else %}
+        <form action="#">
+          <label for="pleaselogin" class="form-label">댓글작성</label>
+          <input type="text" class="form-control" id="pleaselogin" placeholder="댓글을 작성하기 위해서는 로그인을 해주세요." disabled>
+        </form>
+      {% endif %}
+    </div>
+
+
+
+
+
+
+
+    {% comment %} <div>
+      <p>댓글 작성자 - 
+        {{ comment.user }}
+      </p>
+      <p>댓글 내용 - 
+        {{ comment.content }}
+      </p>
+      <p>좋아요 수 - {{ comment.like_users.count }}</p>
+      {% if request.user.is_authenticated %}
+        <form action="{% url 'posts:comment_likes' post.pk comment.pk %}" method="POST">
+          {% csrf_token %}
+          {% if request.user in comment.like_users.all %}
+            <input type="submit" value="좋아요 취소">
+          {% else %}
+            <input type="submit" value="좋아요">
+          {% endif %}
+        </form>
+
+        <form action="{% url 'posts:comment_delete' post.pk comment.pk %}" method="POST">
+          {% csrf_token %}
+          {% if request.user == comment.user %}
+            <input type="submit" value="댓글 삭제">
+          {% endif %}
+        </form>
+      {% endif %}
+    </div> {% endcomment %}
+ 
+
+
+<script>
+  function submitForm1() {
+    document.getElementById('formSelect1').submit();
+  }
+  function submitForm2() {
+    document.getElementById('formSelect2').submit();
+  }
+</script>
+
+
+{% endblock content %}

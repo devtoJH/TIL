@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<div class="d-flex justify-content-center mt-5">
+  Create
+</div>
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center mt-3">
+  <form action="{% block create__url %}{% url 'posts:create' %}{% endblock create__url %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="">제목</label>
+      {{ form.title }}
+
+      <label for="" class="mt-2">사진 1</label>
+      {{ form.image1 }}
+
+      <label for="" class="mt-2">내용 1</label>
+      {{ form.select1_content }}
+
+      <label for="" class="mt-2">사진 2</label>
+      {{ form.image2 }}
+
+      <label for="" class="mt-2">내용 2</label>
+      {{ form.select2_content }}
+    <input class="btn btn-outline-secondary mt-2" type="submit" value='게임 생성'>
+  </form>
+</div>
+{% endblock content %}

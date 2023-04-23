@@ -1,0 +1,11 @@
+{% extends 'posts/create.html' %}
+
+{% block title %}
+<div class="d-flex justify-content-center mt-5">
+  Update
+</div>
+{% endblock title %}
+
+{% block create__url %}
+  {% url 'posts:update' post.pk %}
+{% endblock create__url %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+{% endblock style %}
+
+{% block title %}
+<div class="d-flex justify-content-center mt-5">
+  {{ person.username }} 님의 프로필 페이지
+</div>
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center mt-3">
+  <div class="" style="width: 600px;">
+    <hr>
+    <h3>회원 정보</h3>
+    <p><strong>username</strong> : {{ user.username }}</p>
+    <p><strong>email</strong> : {{ user.email }}</p>
+    <h3>참여한 게임</h3>
+    {% for post in selects %}
+      <a class="text fw-bold" href="{% url 'posts:detail' post.pk %}">
+        {{ post.title }}
+      </a>
+      <hr>
+    {% endfor %}
+    <h3>작성한 글</h3>
+    <hr>
+    {% for post in person.post_set.all %}
+      <a class="text fw-bold" href="{% url 'posts:detail' post.pk %}">
+        {{ post.title }}
+      </a>
+      <hr>
+    {% endfor %}
+    <h3>작성한 댓글</h3>
+    <hr>
+    {% for comment in person.comment_set.all %}
+      <a class="text fw-bold" href="{% url 'posts:detail' comment.post.pk %}">
+        {{ comment.content }}
+      </a>
+      <hr>
+    {% endfor %}
+    <h3>좋아요한 글</h3>
+    <hr>
+    {% for post in person.like_posts.all %}
+      <a class="text fw-bold" href="{% url 'posts:detail' post.pk %}">
+        {{ post.title }}
+      </a>
+      <hr>
+    {% endfor %}
+    <h3>좋아요한 댓글</h3>
+    {% for comment in person.like_comments.all %}
+      <a class="text fw-bold" href="{% url 'posts:detail' comment.post.pk %}">
+        {{ comment.content }}
+      </a>
+      <hr>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
