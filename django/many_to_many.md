@@ -165,7 +165,7 @@ def likes(request, article_pk):
       <input type="submit" value="좋아요">
       {% endif %}
     </form>
-  {% endfor %}
+{% endfor %}
 ```
 
 ### 좋아요 구현 (3/4)
@@ -173,6 +173,159 @@ def likes(request, article_pk):
 
 ### 좋아요 구현 (4/4)
 - 좋아요 버튼 클릭 후 테이블 확인
+
+### Profile 구현 (1/4)
+- 자연스러운 follow 흐름을 위한 프로필 페이지 작성
+
+```python
+# accounts/urls.py
+
+urlpatterns = [
+    ...,
+    # path('<username>/', views.profile, name='profile'),
+    # 앞에 문자열로 url를 작성하면 위의 url 아래로 어떠한 url이 와도 <username>으로 간다.
+    path('profile/<username>/', views.profile, name='profile'),
+]
+```
+```python
+# accounts/views.py
+
+from django.contrib.auth import get_user_model
+
+def profile(request, username):
+    User = get_user_model()
+    # 변수명을 person이라고 지은 이유
+    # 이미 user라는 변수를 사용하고 있기 때문에(내장 변수) 구분하기 쉽지 않음
+    person = User.objects.get(username=username)
+    context = {
+        'person': person,
+    }
+    return render(request, 'accounts/profile.html', context)
+```
+
+### Profile 구현 (2/4)
+- profile 템플릿 작성
+
+```html
+<!-- accounts/profile.html -->
+
+<h1>Profile</h1>
+<button><a href="{% url 'articles:index' %}">back</a></button>
+<h2>{{ person.username }}의 프로필 페이지</h2>
+<hr>
+<h2>{{ person.username }}가 작성한 모든 게시글</h2>
+{% for article in person.article_set.all %}
+    <div>{{ article.title }}</div>
+{% endfor %}
+<hr>
+<h2>{{ person.username }}가 작성한 모든 댓글</h2>
+{% for comment in person.comment_set.all %}
+    <div>{{ comment.content }}</div>
+{% endfor %}
+<hr>
+<h2>{{ person.username }}가 좋아요를 누른 모든 게시글</h2>
+{% for article in person.like_articles.all %}
+    <div>{{ article.title }}</div>
+{% endfor %}
+```
+
+### Profile 구현 (3/4)
+- Profile 템플릿으로 이동할 수 있는 하이퍼링크 작성
+
+```html
+<!-- articles/index.html -->
+
+<a href="{% url 'accounts:profile' user.username%}">내 프로필</a>
+
+{% for article in articles %}
+    <p>작성자: 
+      <a href="{% url 'accounts:profile' article.user.username %}">{{ article.user }}</a>
+    </p>
+{% endfor %}
+```
+
+### Profile 구현 (4/4)
+- 출력 확인
+
+## User & User (Follow 구현)
+### User(M) - User(N)
+- 유저는 0명 이상의 다른 유저와 관련된다.
+- **유저는 다른 유저로부터 0개 이상의 팔로우를 받을 수 있고, 유저는 0명 이상의 다른 유저들에게 팔로잉 할 수 있다.**
+
+### Follow 구현 (1/5)
+- ManyToManyField 작성 및 Migration 진행
+
+```python
+# accounts/models.py
+
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
+```
+
+### Follow 구현 (2/5)
+- 중개테이블 필드 확인
+    - id, from_user_id, to_user_id 필드 확인
+
+### Follow 구현 (3/5)
+- url 및 view 함수 작성
+
+```python
+# accounts/urls.py
+
+urlpatterns = [
+    ...,
+    path('<int:user_pk>/follow/', views.follow, name='follow'),
+]
+```
+```python
+# accounts/views.py
+
+@login_required
+def follow(request, user_pk):
+    # 팔로우를 할 대상이 필요
+    User = get_user_model()
+    person = User.objects.get(pk=user_pk)
+
+    # 팔로우 or 언팔로우
+    # 내 계정은 팔로우 할 수 없음
+    if person != request.user:
+        # if person.followers.filter(pk=request.user.pk).exists():
+        if request.user in person.followers.all():
+            # 언팔로우
+            person.followers.remove(request.user)
+        else:
+            # 팔로우
+            person.followers.add(request.user)
+    return redirect('accounts:profile', person.username)
+```
+
+### Follow 구현 (4/5)
+- 프로필 유저의 팔로잉, 팔로워 수 & 팔로우, 언팔로우 버튼 작성
+
+```html
+<!-- accounts/profile.html -->
+
+<div>
+    팔로잉 : {{ person.followings.all|length }} / 팔로워 : {{ person.followers.all|length }}
+</div>
+{% if request.user != person %}
+<div>
+    <form action="{% url 'accounts:follow' person.pk %}" method="POST">
+        {% csrf_token %}
+        {% if request.user in person.followers.all %}
+            <input type="submit" value='언팔로우'>
+        {% else %}
+            <input type="submit" value='팔로우'>
+        {% endif %}
+    </form>
+</div>
+{% endif %}
+```
+
+### Follow 구현 (5/5)
+- 팔로우 버튼 클릭 후 팔로우 버튼 변화 및 중개 테이블 데이터 확인
 
 ---
 
